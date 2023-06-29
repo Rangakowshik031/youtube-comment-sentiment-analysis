@@ -1,0 +1,4 @@
+pip install pattern
+pip install google-api-python-client
+pip install flask
+pip install textblob
