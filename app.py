@@ -1,15 +1,9 @@
 from flask import Flask, render_template, request
 from pattern.en import sentiment as pattern_sentiment
 from googleapiclient.discovery import build
-
 app = Flask(__name__)
-
-# API credentials
-API_KEY = 'AIzaSyDCQ7vn0EGWrLMnoDo5naxyD5UBOeVXQXI'  # Replace with your API key
-
-# YouTube Data API client
+API_KEY = 'AIzaSyDCQ7vn0EGWrLMnoDo5naxyD5UBOeVXQXI'
 youtube = build('youtube', 'v3', developerKey=API_KEY)
-
 @app.route('/', methods=['GET', 'POST'])
 def sentiment_analysis():
     if request.method == 'POST':
@@ -44,13 +38,11 @@ def count_sentiments(sentiment_scores):
 
 def extract_comments(youtube_link):
     video_id = extract_video_id(youtube_link)
-
-    # Request comments for the video
     response = youtube.commentThreads().list(
         part='snippet',
         videoId=video_id,
         textFormat='plainText',
-        maxResults=100  # Adjust as per your requirements
+        maxResults=100 
     ).execute()
 
     comments = []
@@ -71,7 +63,6 @@ def extract_video_id(youtube_link):
 if __name__ == '__main__':
     app.run(debug=True)
 
-# API credentials
-API_KEY = 'AIzaSyDCQ7vn0EGWrLMnoDo5naxyD5UBOeVXQXI'  # Replace with your API key
+API_KEY = 'AIzaSyDCQ7vn0EGWrLMnoDo5naxyD5UBOeVXQXI'  
 
 

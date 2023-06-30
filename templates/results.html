@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 <head>
     <title>Sentiment Analysis Results</title>
@@ -27,14 +27,11 @@
     </table>
 
     <script>
-        // Get the sentiment data from Flask
         var sentimentData = {
             positive: {{ sentiment_counts.positive }},
             negative: {{ sentiment_counts.negative }},
             neutral: {{ sentiment_counts.neutral }}
         };
-
-        // Create the chart
         var ctx = document.getElementById('sentimentChart').getContext('2d');
         var sentimentChart = new Chart(ctx, {
             type: 'bar',
